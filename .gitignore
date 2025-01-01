@@ -1,0 +1,22 @@
+# Environnement virtuel Python
+bin/
+include/
+lib/
+lib64/
+pyvenv.cfg
+
+# Fichiers de cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Fichiers de log
+*.log
+
+# Configurations spécifiques à l'éditeur de code
+.vscode/
+
+# Fichiers temporaires de système d'exploitation
+.DS_Store  # Pour macOS
+Thumbs.db  # Pour Windows
