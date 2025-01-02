@@ -1,9 +1,12 @@
 import asyncio
 from g4f.client import AsyncClient
 from models import research_and_initial_content_models  
+from googleTrend import trendGlobal
 
 async def main():
     # Crée une instance de AsyncClient avec des fournisseurs
+    listTrends= trendGlobal()
+    print (f"voici la list {listTrends}")
     client = AsyncClient()
 
     # Liste des fournisseurs de texte et d'images
@@ -17,7 +20,7 @@ async def main():
                     messages=[
                         {
                             "role": "user",
-                            "content": "give me the last most searched words on google trend the last week"
+                            "content": f"whrite me this tle list in french :{listTrends}"
                         }
                     ],
                     web_search=False  # Désactive la recherche web
