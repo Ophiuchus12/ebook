@@ -1,35 +1,52 @@
 import asyncio
 from g4f.client import AsyncClient
+from models import research_and_initial_content_models  
 
 async def main():
-    # Crée une instance de AsyncClient sans spécifier les fournisseurs
-    client = AsyncClient(
-        textprovider=["gpt-4o", "claude-3.5-sonnet", "llama-3.1-70b", "pi"],  # Liste des modèles de texte
-        imageprovider=["gemini", "airforce"]  # Liste des fournisseurs d'images
+    # Crée une instance de AsyncClient avec des fournisseurs
+    client = AsyncClient()
+
+    # Liste des fournisseurs de texte et d'images
+   
+    # Fonction pour traiter les modèles de texte
+    async def process_text(client, providers):
+        for provider in providers:
+            try:
+                response = await client.chat.completions.create(
+                    model=provider,
+                    messages=[
+                        {
+                            "role": "user",
+                            "content": "give me the last most searched words on google trend the last week"
+                        }
+                    ],
+                    web_search=False  # Désactive la recherche web
+                )
+
+                print(f"Réponse du modèle {provider}: {response.choices[0].message.content}")
+
+            except Exception as e:
+                print(f"Erreur avec le modèle {provider}: {e}")
+
+    # # Fonction pour traiter les modèles d'images
+    # async def process_image(client, providers):
+    #     for provider in providers:
+    #         try:
+    #             response = await client.images.generate(
+    #                 model=provider,
+    #                 prompt="generate a white cat",
+    #                 response_format="url"
+    #             )
+
+    #             print(f"URL de l'image générée par {provider}: {response.data[0].url}")
+
+    #         except Exception as e:
+    #             print(f"Erreur avec le modèle {provider}: {e}")
+
+    await asyncio.gather(
+        process_text(client, research_and_initial_content_models),
+        #process_image(client, image_models)
     )
-
-    # Liste des fournisseurs de texte
-    textprovider = ["gpt-4o", "claude-3.5-sonnet", "llama-3.1-70b"]
-
-    # Boucle pour appeler les modèles un par un
-    try:
-        for provider in textprovider:
-            response = await client.chat.completions.create(
-                model=provider,  # Spécifie simplement le modèle
-                messages=[
-                    {
-                        "role": "user",
-                        "content": "Say this is a test"
-                    }
-                ],
-                web_search=False  # Paramètre pour désactiver la recherche web
-            )
-
-            # Affiche la réponse générée par le modèle
-            print(f"Réponse du modèle {provider}: {response.choices[0].message.content}")
-
-    except Exception as e:
-        print(f"Erreur lors de l'appel à l'API : {e}")
 
 # Exécuter la fonction principale
 asyncio.run(main())
