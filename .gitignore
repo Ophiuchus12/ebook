@@ -21,3 +21,5 @@ __pycache__/
 # Fichiers temporaires de système d'exploitation
 .DS_Store  # Pour macOS
 Thumbs.db  # Pour Windows
+
+csvTrend/

@@ -47,7 +47,7 @@ def interestSubject7days():
     # Calculer la somme pour chaque colonne (chaque sujet)
     total_interest = all_interest.sum().sort_values(ascending=False)
     #print(total_interest)
-    return total_interest
+    return total_interest[:5]
 
 
     # output_dir = 'csvTrend'
