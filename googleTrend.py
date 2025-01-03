@@ -22,7 +22,7 @@ def trendGlobal():
 
     return trend_names
 
-def interestSubject7days():
+def interestSubject():
     pytrends = TrendReq(hl='en-US', tz=360)
 
     list= trendGlobal()
@@ -46,7 +46,7 @@ def interestSubject7days():
 
     # Calculer la somme pour chaque colonne (chaque sujet)
     total_interest = all_interest.sum().sort_values(ascending=False)
-    #print(total_interest)
+    print(total_interest)
     return total_interest[:5]
 
 
@@ -62,4 +62,4 @@ def interestSubject7days():
 
 
 if __name__ == "__main__":
-    interestSubject7days()
+    interestSubject()
