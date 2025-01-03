@@ -1,6 +1,5 @@
 # Recherche d'idées et contenu initial
 research_and_initial_content_models = [
-    # "gpt-4", "gpt-4o", 
     "llama-3.1-405b", 
     "mistral-large"
 ]
