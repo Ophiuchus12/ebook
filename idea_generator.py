@@ -11,7 +11,7 @@ async def process_idea(client, providers, list_trends):
                             f"Which of those topics is more likely to interest people and be used for a global theme of a book? "
                             f"There are some rules to find the best idea. The list of topics that I give to you is just the general idea for the book subject. "
                             f"When a topic is selected, the book subject will only be the general inspiration and not the principal subject. The book subject can't be focused on a particular person. "
-                            f"The response must be only a small description of the book idea and the title. "
+                            f"The response must be only a small description (4 lignes maximum) of the book idea and the title. "
                             f"List of trends on Google: {list_trends}"
                         )
                     }

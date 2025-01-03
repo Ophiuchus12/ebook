@@ -6,7 +6,7 @@ research_and_initial_content_models = [
 
 # Création de la structure de l'eBook et rédaction du contenu
 content_creation_models = [
-    "gpt-4", "llama-3.3-70b", "mixtral-7b", "claude-3.5-sonnet"
+    "gpt-4", "llama-3.3-70b", "mixtral-7b"
 ]
 
 # Affinage du contenu et ajout de créativité
