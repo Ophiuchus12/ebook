@@ -30,4 +30,4 @@ The following API methods are available:
 # ToDo
 
 ## if no trend add different idea or prompt 
-## adapt md writing in pdf  
+## adapt md writing in pdf ->  Search for news articles 
