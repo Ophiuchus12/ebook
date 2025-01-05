@@ -23,3 +23,11 @@ The following API methods are available:
 - **Top Charts**: returns the data for a given topic shown in Google Trends' Top Charts section.
 
 - **Suggestions**: returns a list of additional suggested keywords that can be used to refine a trend search.
+
+
+
+
+# ToDo
+
+## if no trend add different idea or prompt 
+## adapt md writing in pdf  

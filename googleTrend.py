@@ -2,6 +2,7 @@ from pytrends.request import TrendReq
 import pandas as pd
 from datetime import datetime
 import os
+import time 
 
 pd.set_option('future.no_silent_downcasting', True)
 def nowdate():
@@ -38,12 +39,12 @@ def interestSubject():
     trend_names1 = list[:5]
     trend_names2 = list[5:10]
 
-    pytrends.build_payload(trend_names1, timeframe='today 1-m', geo='US')
+    print ("l1", trend_names1, "l2", trend_names2)
 
+    pytrends.build_payload(trend_names1, timeframe='today 1-m', geo='US')
     interest_over_time1 = pytrends.interest_over_time()
 
     pytrends.build_payload(trend_names2, timeframe='today 1-m', geo='US')
-
     interest_over_time2 = pytrends.interest_over_time()
 
     all_interest = pd.concat([interest_over_time1, interest_over_time2], axis=1)
