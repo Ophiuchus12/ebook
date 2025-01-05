@@ -8,7 +8,7 @@ async def process_structure (client, providers, ideaContent):
                         "role": "user",
                         "content": (
                             "You are a master of literature and writing and an expert in the field.\n\n"
-                            "I'll give you the title and description of my e-book idea. I want you to write the structure and content ideas for the different parts. "
+                            "I'll give you the title and description of my e-book idea. I want you to write only the structure and content ideas for the different parts. "
                             "It must be effective, interesting, and well-constructed.\n\n"
                             f"Here is my first idea: {ideaContent}"
                         )

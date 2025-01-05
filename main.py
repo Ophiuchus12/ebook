@@ -4,6 +4,7 @@ from models import research_and_initial_content_models, content_creation_models
 from googleTrend import interestSubject
 from idea_generator import process_idea 
 from structure_generator import process_structure 
+from generatepdf import generate_pdf_recap
 async def main():
     
     list_trends = interestSubject()
@@ -16,6 +17,13 @@ async def main():
     if idea:
         print(f"Réponse finale : {idea}")
         print(f"Plan de structure : {plan}")
+    else:
+        print("Aucun modèle n'a pu générer une réponse valide.")
+
+    if idea:
+        print(f"Réponse finale : {idea}")
+        print(f"Plan de structure : {plan}")
+        generate_pdf_recap(idea, plan)
     else:
         print("Aucun modèle n'a pu générer une réponse valide.")
 
