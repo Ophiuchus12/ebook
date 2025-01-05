@@ -15,6 +15,11 @@ def trendGlobal():
     # Obtenir les recherches tendance mondiales
     global_trending = pytrends.trending_searches(pn='united_states')
 
+    if global_trending.empty:
+        print("Aucune tendance globale retournée. Vérifiez la région ou réessayez plus tard.")
+        return None
+
+
     trend_names = global_trending[0].tolist()
 
     # for trend in trend_names : 
@@ -26,6 +31,10 @@ def interestSubject():
     pytrends = TrendReq(hl='en-US', tz=360)
 
     list= trendGlobal()
+    if not list:
+        return None 
+    
+    
     trend_names1 = list[:5]
     trend_names2 = list[5:10]
 
