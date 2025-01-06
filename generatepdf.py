@@ -2,7 +2,7 @@ from fpdf import FPDF
 import os
 
 
-def generate_pdf_recap(idea, plan):
+def generate_pdf_recap(idea, content):
     
     # Nom du fichier PDF basé sur le titre dans l'idée
     title = idea.split("\n")[0].strip() if idea else "Untitled"
@@ -28,8 +28,8 @@ def generate_pdf_recap(idea, plan):
     pdf.multi_cell(0, 10, txt="Idea:\n" + (idea if idea else "No idea generated."))
     pdf.ln(10)  # Espacement
 
-    # Ajouter le plan
-    pdf.multi_cell(0, 10, txt="Plan:\n" + (plan if plan else "No plan generated."))
+    # Ajouter le content
+    pdf.multi_cell(0, 10, txt="Content:\n" + (content if content else "No content generated."))
 
     # Enregistrer le PDF
     try:

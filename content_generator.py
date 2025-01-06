@@ -1,4 +1,4 @@
-async def process_structure (client, providers, ideaContent):
+async def process_content(client, providers, structure):
     for provider in providers:
         try:
             response = await client.chat.completions.create(
@@ -7,11 +7,10 @@ async def process_structure (client, providers, ideaContent):
                     {
                         "role": "user",
                         "content": (
-                            "You are a master of literature and writing and an expert in the field.\n\n"
-                            "I'll give you the title and description of my e-book idea. I want you to write only the structure and content ideas for the different parts. "
-                            "Add some recommendations on narrative techniques, stylistic approaches, and others."                            
-                            "It must be effective, interesting, and well-constructed.\n\n"
-                            f"Here is my first idea: {ideaContent}"
+                            f"I am providing you with detailed information, including the idea, structure, and plan for my e-book." 
+                            f"Your task is to follow the guidelines provided and write all the parts tailored to the given "
+                            f"context and objectives. Write all in english."
+                            f"Here is my e-book : {structure}"
                         )
                     }
                 ],
@@ -25,5 +24,5 @@ async def process_structure (client, providers, ideaContent):
 
         except Exception as e:
             print(f"Erreur avec le modèle {provider}: {e}")
-    
-    return None  
+
+    return None  # Si aucun modèle ne donne une réponse valide
