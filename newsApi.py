@@ -11,9 +11,11 @@ def main():
             title = article.get('title', 'Titre non disponible')
             description = article.get('description', 'Description non disponible')
             response.append({'index': index, 'title': title, 'description': description})
-            print("response", response)
+            
     else:
         print("Erreur lors de la récupération des articles.")
+
+    print("response", response[:5])
 
 if __name__ == "__main__":
     main()
