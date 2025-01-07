@@ -14,7 +14,7 @@ structure_creation_models = [
 
 # Affinage du contenu et ajout de créativité
 content_models = [
-    "claude-3.5-sonnet", "gemini-pro", "qwen-2-72b", "deepseek-chat"
+    "gemini-1.5-pro", "gemini-1.5-flash", "gemini-2.0-flash", "deepseek-chat"
 ]
 
 # Édition et correction du texte
