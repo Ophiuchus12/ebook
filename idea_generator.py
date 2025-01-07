@@ -7,13 +7,17 @@ async def process_idea(client, providers, list_trends):
                     {
                         "role": "user",
                         "content": (
-                            f"I want to write an e-book. I took the top topics searched on Google, but not all of the trends are appropriate. "
-                            f"Which of those topics is more likely to interest people and be used for a global theme of a book? "
-                            f"There are some rules to find the best idea. The list of topics that I give to you is just the general idea for the book subject. "
-                            f"When a topic is selected, the book subject will only be the general inspiration and not the principal subject. The book subject can't be focused on a particular person. "
-                            f"The response must be only a small description (4 lignes maximum) of the book idea and the title. "
-                            f"List of trends on Google: {list_trends}"
+                            f"I am looking to write an e-book based on trending topics from Google searches. Your task is to help me identify the most compelling and globally relevant idea for the book. "
+                            f"The chosen topic should align with the following rules: "
+                            f"1. The selected topic will serve as general inspiration for the book and not as the main or sole focus. "
+                            f"2. The book must not center on a specific individual or biography. "
+                            f"3. The idea should appeal to a broad, global audience. "
+                            f"Your response should be concise and structured as follows: "
+                            f" - 'title': [Insert book title here] "
+                            f" - 'description': [Provide a brief description of the book idea, limited to 4 lines maximum] "
+                            f"Below is the list of possible subjects to consider: {list_trends}"
                         )
+
                     }
                 ],
                 web_search=False  # Désactive la recherche web

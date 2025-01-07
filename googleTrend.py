@@ -60,10 +60,16 @@ def interestSubject():
 
         # Calculer la somme pour chaque colonne (chaque sujet) et trier
         total_interest = all_interest.sum().sort_values(ascending=False)
-        print(total_interest)
+
+        # Convertir total_interest en une liste
+        total_interest_list = total_interest[0].tolist()
+
+        # Afficher la liste des intérêts
+        print(total_interest_list)
 
         # Retourner les 5 premiers éléments
-        return total_interest[:5]
+
+        return total_interest_list[:5]
 
     except Exception as e:
         # Gestion d'erreur : renvoyer les 5 premiers sujets en cas de problème

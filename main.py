@@ -9,23 +9,26 @@ from generatepdf import generate_pdf_recap
 async def main():
     
     list_trends = interestSubject()
-    if not list_trends:  # Vérifie si aucune donnée n'a été retournée
+    if not list_trends :  # Vérifie si aucune donnée n'a été retournée
         print("Aucune tendance détectée, arrêt de la génération du livre.")
-        return False
+        return None
     
+ 
 
     client = AsyncClient()
 
     # Exécuter le traitement des idées
     idea = await process_idea(client, research_and_initial_content_models, list_trends)
+    print ("stage 1")
     plan = await process_structure(client, structure_creation_models, idea)
+    print ("stage 2")
     content = await process_content(client,content_models, plan)
 
 
     if idea:
         print(f"Réponse finale : {idea}")
         #print(f"Plan de structure : {plan}")
-        print(f"Contenu : {content}")
+        print(f"Plan : {plan}")
         generate_pdf_recap(idea, content)
     else:
         print("Aucun modèle n'a pu générer une réponse valide.")
