@@ -1,19 +1,35 @@
 from fpdf import FPDF
 import os
 import re
+import markdown
 
+# def html_to_text_for_pdf(html_content, pdf):
+#     """Convertir le contenu HTML en texte pour FPDF avec mise en forme (y compris gras, listes)."""
+    
+#     # Remplacer les balises de titre par une mise en forme FPDF
+#     html_content = html_content.replace("<h2>", "\n\n").replace("</h2>", "\n")  # Titres h2 comme des sauts de ligne
+#     html_content = html_content.replace("<p>", "\n").replace("</p>", "\n")  # Paragraphes comme des sauts de ligne
+
+#     # Gérer les balises <strong> pour le texte en gras
+#     html_content = re.sub(r'<strong>(.*?)</strong>', r'\1', html_content)  # Extraire le texte du gras
+    
+#     # Gestion des balises <ul> et <li> pour les listes
+#     html_content = html_content.replace("<ul>", "\n").replace("</ul>", "\n")  # Liste non ordonnée
+#     html_content = re.sub(r'<li>(.*?)</li>', r'• \1', html_content)  # Liste avec puce (•)
+    
+#     # Appliquer le gras pour le texte encadré par <strong> dans le PDF
+#     content_lines = html_content.split('\n')
+#     for i, line in enumerate(content_lines):
+#         if "<strong>" in line:  # Si le texte est censé être en gras
+#             pdf.set_font('Arial', 'B', 10)  # Appliquer le gras
+#             content_lines[i] = line.replace("<strong>", "").replace("</strong>", "")  # Retirer balises
+#         else:
+#             pdf.set_font('Arial', '', 10)  # Police normale
+#     return '\n'.join(content_lines)
 
 def generate_pdf_recap(idea, content):
     
-    if idea:
-    # Cherche le contenu après "Title:" avec une expression régulière
-        match = re.search(r'"?\s*title\s*"\s*:\s*"(.+?)"\s*', idea, re.IGNORECASE)
-        if match:
-            title = match.group(1).strip()  # Récupère le texte après "Title:"
-        else:
-            title = "Untitled"  # Valeur par défaut si "Title:" n'est pas trouvé
-    else:
-        title = "Untitled"
+    title = idea.split("\n")[0].strip() if idea else "Untitled"
 
 # Crée un nom de fichier sûr pour le PDF
     pdf_filename = f"{title.replace(' ', '_').replace('/', '-')}.pdf"
@@ -38,8 +54,13 @@ def generate_pdf_recap(idea, content):
     pdf.multi_cell(0, 10, txt="Idea:\n" + (idea if idea else "No idea generated."))
     pdf.ln(10)  # Espacement
 
-    # Ajouter le content
-    pdf.multi_cell(0, 10, txt="Content:\n" + (content if content else "No content generated."))
+    if content:
+        # Convertir le contenu Markdown en texte brut
+        #html_content = markdown.markdown(content)
+        # formatted_content = html_to_text_for_pdf(html_content, pdf)
+        pdf.multi_cell(0, 10, txt="Content:\n" + content)
+    else:
+        pdf.multi_cell(0, 10, txt="No content generated.")
 
     # Enregistrer le PDF
     try:
