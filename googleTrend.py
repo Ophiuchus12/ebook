@@ -62,7 +62,7 @@ def interestSubject():
         total_interest = all_interest.sum().sort_values(ascending=False)
 
         # Convertir total_interest en une liste
-        total_interest_list = total_interest[0].tolist()
+        total_interest_list = total_interest.iloc[0].tolist()
 
         # Afficher la liste des intérêts
         print(total_interest_list)
