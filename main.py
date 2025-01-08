@@ -1,11 +1,13 @@
 import asyncio
 from g4f.client import AsyncClient
-from models import research_and_initial_content_models, structure_creation_models, content_models  
+from models import research_and_initial_content_models, structure_creation_models, content_models, editing_and_revision_models  
 from googleTrend import interestSubject
 from idea_generator import process_idea 
+from idea_novel_generator import process_idea_novel
 from structure_generator import process_structure
 from content_generator import process_content
 from generatepdf import generate_pdf_recap
+from editing_generator import process_editing
 async def main():
     
     list_trends = interestSubject()
@@ -18,11 +20,14 @@ async def main():
     client = AsyncClient()
 
     # Exécuter le traitement des idées
-    idea = await process_idea(client, research_and_initial_content_models, list_trends)
+    idea = await process_idea_novel(client, research_and_initial_content_models, list_trends)
     print ("stage 1")
     plan = await process_structure(client, structure_creation_models, idea)
     print ("stage 2")
     content = await process_content(client,content_models, plan)
+    print ("stage 3")
+    #pointOV= await process_editing( client, editing_and_revision_models, content)
+    
 
 
     if idea:

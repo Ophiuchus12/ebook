@@ -5,13 +5,16 @@ async def process_content(client, providers, structure):
             full_response = ""  # Contiendra la réponse complète
             prompt = (
                 f"I am providing you with detailed information, including the idea, structure, and plan for my e-book. "
-                f"Your task is to write in English all parts of my book with good construction and content. "
-                f"Once the book is complete, always explicitly write '[END]' to indicate the end of the book. "
-                f"Here is my e-book: {structure}"
+                f"Your task is to write the complete e-book in English with good construction and content, following the provided structure. "
+                f"Each chapter, section, and part of the book should be written in full detail without skipping or summarizing any part. "
+                f"Do not include any recommendations, questions, or requests for feedback during the process. "
+                f"Once the book is fully written, explicitly write '[END]' to indicate the end of the book. "
+                f"Here is my e-book structure: {structure}"
+
             )
 
             has_more_content = True  # Flag pour continuer la génération
-            while has_more_content and i < 10:
+            while has_more_content and i < 20:
                 # Limitez le contexte pour éviter de dépasser la limite de tokens
                 context = full_response[-500:] if len(full_response) > 500 else full_response
                 
