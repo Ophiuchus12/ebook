@@ -27,9 +27,9 @@ import markdown
 #             pdf.set_font('Arial', '', 10)  # Police normale
 #     return '\n'.join(content_lines)
 
-def generate_pdf_recap(idea, content):
+def generate_pdf_recap(content):
     
-    title = idea.split("\n")[0].strip() if idea else "Untitled"
+    title = content.split("\n")[0].strip() if content else "Untitled"
 
 # Crée un nom de fichier sûr pour le PDF
     pdf_filename = f"{title.replace(' ', '_').replace('/', '-')}.pdf"
@@ -51,7 +51,7 @@ def generate_pdf_recap(idea, content):
         pdf.set_font("Arial", size=10)
 
     # Ajouter l'idée
-    pdf.multi_cell(0, 10, txt="Idea:\n" + (idea if idea else "No idea generated."))
+    pdf.multi_cell(0, 10, txt="Idea:\n" + (content if content else "No idea generated."))
     pdf.ln(10)  # Espacement
 
     if content:
