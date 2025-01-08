@@ -16,7 +16,7 @@ async def process_structure (client, providers, ideaContent):
                         "- Suggestions for character arcs, themes, and potential subplots to enrich the narrative.\n\n"
                         f"Here is the idea for the e-book: {ideaContent}\n\n"
                         "Your response should include: "
-                        "- A complete breakdown of the book structure (e.g., chapters or parts). "
+                        "- A complete breakdown of the book structure (e.g., chapters). "
                         "- Suggestions for stylistic and narrative techniques. "
                         "- Recommendations for themes, motifs, and subplots to make the story more compelling. "
                         "- Any other creative inputs to refine and elevate the e-book idea."

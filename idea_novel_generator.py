@@ -8,7 +8,7 @@ async def process_idea_novel(client, providers, list_trends):
                         "role": "user",
                         "content": (
                             "I am looking to write an e-book inspired by trending topics from Google searches. "
-                            "Your task is to help me identify the most compelling and globally relevant idea for a story or novel. "
+                            "Your task is to help me identify one relevant idea for a story or novel. "
                             "The book can draw thematic inspiration from these trending subjects while weaving a fictional narrative. "
                             "\n\n"
                             "The chosen idea must follow these rules: "

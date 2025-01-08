@@ -8,6 +8,7 @@ from structure_generator import process_structure
 from content_generator import process_content
 from generatepdf import generate_pdf_recap
 from editing_generator import process_editing
+from generateodt import generate_odt_recap
 async def main():
     
     list_trends = interestSubject()
@@ -34,7 +35,7 @@ async def main():
         print(f"Réponse finale : {idea}")
         #print(f"Plan de structure : {plan}")
         print(f"Plan : {plan}")
-        generate_pdf_recap(idea, content)
+        generate_odt_recap(content)
     else:
         print("Aucun modèle n'a pu générer une réponse valide.")
 

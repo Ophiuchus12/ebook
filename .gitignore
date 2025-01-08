@@ -24,4 +24,6 @@ Thumbs.db  # Pour Windows
 
 csvTrend/
 recapBookPdf/
+recapBookOdt/
 test.py
+share/
