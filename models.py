@@ -23,8 +23,8 @@ editing_and_revision_models = [
 ]
 
 # Création d'illustrations et mise en forme
-image_creation_and_formatting_models = [
-    "sdxl", "sd-3", "flux"
+image_creation = [
+    "sdxl", "sd-3", "flux", "midijourney"
 ]
 
 # Révision finale et publication
