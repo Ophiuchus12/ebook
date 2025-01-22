@@ -9,7 +9,7 @@ async def process_image(client, models, topic):
                 model=model,
                 prompt=(f"I am writing a book and need an illustration for the first cover page."
                         f"Below is the Title, genre and Synopsis of my book: {topic}"
-                        f"Please generate a visually appealing book cover based on this information."),
+                        f"Please generate a visually appealing book cover based on this information with the title on it."),
                 response_format="url"
                         
                )
@@ -31,15 +31,11 @@ async def main():
 
     # Définition du sujet sous forme de dictionnaire
     topic = {
-        "title": "The Weight of Silence",
-        "genre": "Historical Fiction with elements of Mystery",
-        "synopsis": (
-            "In a small, isolated village nestled amidst a breathtaking landscape, "
-            "a long-held secret, akin to a 'National Day of Mourning,' casts a shadow over the community. "
-            "Decades after the tragic event, whispers and unsettling occurrences begin to surface, "
-            "forcing the villagers to confront the past and the devastating consequences of their collective silence."
-        )
-    }
+    "**Title:** The Barcelona Anomaly",
+    "**Genre:** Science Fiction Thriller",
+    "**Synopsis:** A subtle shift in Barcelona's architecture opens a gateway to a parallel dimension, subtly altering reality. A group of strangers, drawn together by inexplicable connections, must unravel the mystery before their world merges with another, facing existential questions about choice and identity in a rapidly changing landscape.",
+    "**Plan:** Certainly! A science fiction thriller like *The Barcelona Anomaly* provides fertile ground for exploring mind-bending ideas alongside gripping human drama. Below, I’ll take your concept and craft a detailed structure, propose narrative techniques, discuss stylistic approaches, and enrich it with thematic layers and subplots that will elevate the story. Let’s dive in!"
+}
 
     
 
