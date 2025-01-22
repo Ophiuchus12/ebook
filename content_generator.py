@@ -1,65 +1,62 @@
 async def process_content(client, providers, structure):
-    i = 0
     for provider in providers:
         try:
-            full_response = ""  # Contiendra la réponse complète
-            current_chapter = 0  # Suivi des chapitres/sections générés
+            full_response = ""
+            current_chapter = 0
+            i = 0
 
-            # Règles globales et comportement via le rôle "system"
             system_message = (
                 "You are a professional e-book writer. Your task is to create a complete and engaging e-book in English, "
-                "strictly following the provided structure and guidelines. Each chapter and section must be fully developed "
-                "with clear progression, strong character development, and engaging storytelling. "
-                "Each chapter should be between 800 and 1000 words. Do not skip or summarize any part of the content. "
-                "Focus on delivering compelling content without including recommendations, questions, or feedback. "
-                "Explicitly conclude the e-book with '[END OF BOOK]' to indicate its completion."
+                "strictly adhering to the provided structure and guidelines. Each chapter and section must be fully developed, "
+                "demonstrating clear progression, strong character development, and engaging storytelling. "
+                "Each chapter should contain between 800 and 1000 words. Do not skip or summarize any part of the content. "
+                "Focus on delivering compelling and detailed content without including recommendations, questions, or feedback. "
+                "Explicitly each end of chapter with '[end of the chapter x]'and conclude the e-book with '[END OF BOOK]' to indicate its completion."
             )
 
-            # Instructions initiales pour le modèle
-            user_prompt = (
-                f"I am providing you with the structure for my e-book. "
-                f"Here is the structure: {structure}"
-            )
+            user_prompt = f"I am providing you with the structure for my e-book. Here is the structure: {structure}"
 
-            has_more_content = True  # Flag pour continuer la génération
+            has_more_content = True
 
             while has_more_content and i < 20:
-                # Construire le contexte avec résumé et progression actuelle
                 context = (
                     f"Progress so far:\n{full_response[-800:]}\n" if full_response else ""
                 )
-                context += f"Continue writing the e-book. Start from Chapter {current_chapter + 1}."
+                context += f"Continue writing the e-book."
 
                 response = await client.chat.completions.create(
                     model=provider,
                     messages=[
-                        {"role": "system", "content": system_message},  # Règles globales
-                        {"role": "user", "content": user_prompt},        # Structure initiale
-                        {"role": "assistant", "content": context}       # Contexte généré jusqu'ici
+                        {"role": "system", "content": system_message},
+                        {"role": "user", "content": user_prompt},
+                        {"role": "assistant", "content": context}
                     ],
                     web_search=False
                 )
 
-                if response:
+                if response and response.choices:
                     partial_result = response.choices[0].message.content.strip()
-                    full_response += partial_result  # Ajoute le contenu généré à la réponse complète
+                    full_response += partial_result
 
-                    # Vérifiez si un nouveau chapitre a été généré correctement
                     if f"Chapter {current_chapter + 1}" in partial_result:
-                        current_chapter += 1  # Avance au chapitre suivant
+                        current_chapter += 1
 
-                    # Vérifier si le modèle a terminé
                     has_more_content = "[END OF BOOK]" not in partial_result
                     i += 1
-                    print(f"Iteration {i}, Chapter {current_chapter}")
+                    print(f"Iteration {i}, Chapter {current_chapter}, Model: {provider}")
 
                 else:
-                    print(f"Le modèle {provider} n'a pas retourné de réponse.")
-                    has_more_content = False  # Arrête la génération en cas d'échec
+                    print(f"No valid response from model {provider}.")
+                    has_more_content = False
 
-            return full_response
+            if full_response:
+                return full_response
+            else:
+                print(f"Failed to generate content with model {provider}.")
+                return None
 
         except Exception as e:
-            print(f"Erreur avec le modèle {provider}: {e}")
+            print(f"Error with model {provider}: {e}")
+            continue
 
-    return None  # Si aucun modèle ne donne une réponse valide
+    return None
