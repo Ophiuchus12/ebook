@@ -9,7 +9,7 @@ async def process_image(client, models, topic):
                 model=model,
                 prompt=(f"I am writing a book and need an illustration for the first cover page."
                         f"Below is the Title, genre and Synopsis of my book: {topic}"
-                        f"Please generate a visually appealing book cover based on this information with the title on it."),
+                        f"Please generate a visually appealing image for my book cover based on this information with the title on it."),
                 response_format="url"
                         
                )
